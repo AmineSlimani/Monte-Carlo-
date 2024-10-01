@@ -1,4 +1,4 @@
-# Monte Carlo Simulation of Spin = 2 for MnAs
+# Monte Carlo Simulation of Spin Systems for MnAs
 
 This repository contains a C program that implements a Monte Carlo simulation for studying spin-2 systems with two nearest neighbors in the material MnAs. The code simulates the behavior of spins in a 3D lattice using the Metropolis algorithm to calculate thermodynamic properties such as magnetization, susceptibility, and heat capacity.
 
@@ -8,7 +8,7 @@ This repository contains a C program that implements a Monte Carlo simulation fo
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Output](#output)
-- [Results](#results)
+- [Critical Exponent Calculation](#critical-exponent-calculation)
 - [License](#license)
 
 ## Features
@@ -35,12 +35,12 @@ To compile and run the program, you will need:
    cd Monte_Carlo_Simulation
    ```
 
-2. Compile the code:
+2. Compile the Monte Carlo simulation code:
    ```bash
    gcc -o monte_carlo monte_carlo.c -lm
    ```
 
-3. Run the program:
+3. Run the Monte Carlo simulation:
    ```bash
    ./monte_carlo
    ```
@@ -59,9 +59,37 @@ The program generates output files that contain the following columns:
 
 Each data file corresponds to a different lattice size, allowing for comparison of results across different scales.
 
-## Results
+## Critical Exponent Calculation
 
-After running the simulation, you can analyze the output data to understand the behavior of the spin system at different temperatures. Use your favorite data analysis tools (e.g., Python with Matplotlib, R) to visualize the results.
+This section describes a separate C program that takes the output from the Monte Carlo simulation and computes the critical exponents for the spin-2 system in the material MnAs.
+
+### Overview
+
+The program reads predefined arrays for lattice sizes, magnetization, susceptibility, and heat capacity, and then calculates the natural logarithm of these values. The results are saved to a file called `exp.dat`.
+
+### Output
+
+The program generates a file named `exp.dat` containing the following columns:
+
+- Logarithm of lattice size \( L \)
+- Logarithm of magnetization \( M \)
+- Logarithm of susceptibility \( X \)
+- Logarithm of heat capacity \( C_v \)
+
+This data can be used for further analysis of critical behavior and to extract critical exponents.
+
+### Usage
+
+1. Include this program in your project directory.
+2. Compile it:
+   ```bash
+   gcc -o critical_exponents critical_exponents.c -lm
+   ```
+3. Run the program:
+   ```bash
+   ./critical_exponents
+   ```
+4. The output file `exp.dat` will be created in the same directory.
 
 ## License
 
